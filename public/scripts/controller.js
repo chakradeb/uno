@@ -19,13 +19,15 @@ let loadGame = function(){
   let game = new Game();
   addPlayer(game);
   game.addDeck();
+  game.addTable();
   game.distributeCards(numberOfRounds);
-  console.log('Remaining Deck ==>',game.getDeck());
-  console.log('Remaining Deck Size ==>',game.getDeck().undistributedCards.length);
-  console.log('Player 1 ==>',game.players[0].showHand());
-  console.log('Player 2 ==>',game.players[1].showHand());
-  console.log('Player 3 ==>',game.players[2].showHand());
-  console.log('Player 4 ==>',game.players[3].showHand());
+  while(!game.isOver()){
+    let player = game.determineTurn();
+    let card = player.throwCard();
+    game.addCardToTable(card);
+  }
+  console.log('thrown cards ==>',game.getTable());
+  console.log('remaining cards ==>',game.getDeck());
 }
 
 loadGame();

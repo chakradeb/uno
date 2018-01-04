@@ -1,8 +1,10 @@
 let Deck = require('./deck.js');
+let Table = require('./table.js');
 
 let Game = function(){
   this.players = [];
   this.deck = {};
+  this.table = {};
   this.playingDirection = [];
   this.currentTurn = 0;
 }
@@ -27,6 +29,19 @@ Game.prototype.getDeck = function(){
   return this.deck;
 }
 
+Game.prototype.addTable = function(){
+  let table = new Table();
+  this.table = table;
+}
+
+Game.prototype.addCardToTable = function(card){
+  this.table.add(card);
+}
+
+Game.prototype.getTable = function(){
+  return this.table;
+}
+
 Game.prototype.distributeCards = function(numberOfRounds){
   let round = 0;
   while(round<numberOfRounds){
@@ -41,9 +56,15 @@ Game.prototype.distributeCards = function(numberOfRounds){
 }
 
 Game.prototype.determineTurn = function(){
-  let currentTurn = this.currentTurn;
-  this.turn = this.players.length - currentTurn;
+  let currentTurn = this.currentTurn % this.players.length;
+  this.currentTurn++;
   return this.players[currentTurn];
+}
+
+Game.prototype.isOver = function(){
+  return this.players.some(function(player){
+    return player.numberOfCards() == 0;
+  });
 }
 
 module.exports = Game;
