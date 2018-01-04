@@ -2,7 +2,7 @@ const readline = require('readline-sync');
 let Game = require('./src/game.js');
 let Player = require('./src/player.js');
 
-let numberOfRounds = 10;
+let numberOfRounds = 7;
 
 let addPlayer = function(game){
   console.log('Enter Number of Players:');
@@ -21,7 +21,7 @@ let loadGame = function(){
   game.addDeck();
   game.distributeCards(numberOfRounds);
   console.log('Remaining Deck ==>',game.getDeck());
-  console.log('Remaining Deck Size ==>',game.getDeck().length);
+  console.log('Remaining Deck Size ==>',game.getDeck().undistributedCards.length);
   console.log('Player 1 ==>',game.players[0].showHand());
   console.log('Player 2 ==>',game.players[1].showHand());
   console.log('Player 3 ==>',game.players[2].showHand());

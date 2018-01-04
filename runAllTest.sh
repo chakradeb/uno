@@ -1,1 +1,0 @@
-mocha ./public/scripts/test

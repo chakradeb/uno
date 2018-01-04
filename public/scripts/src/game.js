@@ -24,7 +24,7 @@ Game.prototype.addDeck = function(){
 }
 
 Game.prototype.getDeck = function(){
-  return this.deck.getCards();
+  return this.deck;
 }
 
 Game.prototype.distributeCards = function(numberOfRounds){
