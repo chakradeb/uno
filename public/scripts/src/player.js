@@ -1,3 +1,5 @@
+let removeCard = require('./utility.js').pop;
+
 let Player = function(name) {
   this.name = name;
   this.hand = [];
@@ -25,14 +27,24 @@ Player.prototype.hasCardOfColor = function(color) {
   });
 }
 
-Player.prototype.hasCardOfNumber = function(value) {
+Player.prototype.hasCardOfRank = function(value) {
   return this.hand.some(function(card) {
-    return card.getNumber() == value;
+    return card.getRank() == value;
   });
 }
 
-Player.prototype.throwCard = function(card) {
-  return this.hand.shift();
+Player.prototype.getMatchingCards = function(tableCard){
+  let color = tableCard.getColor();
+  let rank = tableCard.getRank();
+  return this.hand.filter(function(playerCard){
+    return (playerCard.getColor()==color || playerCard.getRank()==rank);
+  });
+}
+
+Player.prototype.throwMatchingCard = function(tableCard) {
+  let matchingCards = this.getMatchingCards(tableCard);
+  removeCard(matchingCards[0],this.hand);
+  return matchingCards[0];
 }
 
 module.exports = Player;

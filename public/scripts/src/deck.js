@@ -16,10 +16,10 @@ Deck.prototype.getCards = function(){
 Deck.prototype.loadCards = function(){
   allCards.deck.forEach((card) => {
     let color = card.color;
-    let number = card.number;
+    let rank = card.rank;
     let action = card.action;
     let value = card.value;
-    let unoCard = new Card(color,number,action,value);
+    let unoCard = new Card(color,rank,action,value);
     this.undistributedCards.push(unoCard);
   });
 }

@@ -21,13 +21,17 @@ let loadGame = function(){
   game.addDeck();
   game.addTable();
   game.distributeCards(numberOfRounds);
+  game.addOpeningCard();
+  console.log(game.getLastPlayedCard());
   while(!game.isOver()){
     let player = game.determineTurn();
-    let card = player.throwCard();
-    game.addCardToTable(card);
+    let lastPlayerCard = game.getLastPlayedCard();
+    let card = player.throwMatchingCard(lastPlayerCard);
+    if(card) console.log(`          ${player.getName()} Throwing ==>`,card);
+    if(card) game.addCardToTable(card);
+    console.log(`Player: ${player.getName()}==>`,player.showHand());
   }
   console.log('thrown cards ==>',game.getTable());
-  console.log('remaining cards ==>',game.getDeck());
 }
 
 loadGame();

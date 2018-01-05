@@ -29,6 +29,10 @@ Game.prototype.getDeck = function(){
   return this.deck;
 }
 
+Game.prototype.drawCardFromDeck = function(){
+  return this.deck.drawFirstCard();
+}
+
 Game.prototype.addTable = function(){
   let table = new Table();
   this.table = table;
@@ -38,8 +42,16 @@ Game.prototype.addCardToTable = function(card){
   this.table.add(card);
 }
 
+Game.prototype.addOpeningCard = function(){
+  this.addCardToTable(this.drawCardFromDeck());
+}
+
 Game.prototype.getTable = function(){
   return this.table;
+}
+
+Game.prototype.getLastPlayedCard = function(){
+  return this.table.getFirstCard();
 }
 
 Game.prototype.distributeCards = function(numberOfRounds){

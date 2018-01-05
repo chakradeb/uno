@@ -21,4 +21,5 @@ let shuffle = function(unoCards){
   return shuffledCards;
 }
 
+exports.pop = pop;
 exports.shuffle = shuffle;

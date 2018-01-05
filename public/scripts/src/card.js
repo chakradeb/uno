@@ -1,6 +1,6 @@
-let Card = function(color,number,action,value){
+let Card = function(color,rank,action,value){
   this.color = color;
-  this.number = number;
+  this.rank = rank;
   this.action = action;
   this.value = value;
 }
@@ -8,8 +8,8 @@ let Card = function(color,number,action,value){
 Card.prototype.getColor = function(){
   return this.color;
 }
-Card.prototype.getNumber = function(){
-  return this.number;
+Card.prototype.getRank = function(){
+  return this.rank;
 }
 // Card.prototype.isReverse = function(){
 //   return this.action == 'reverse';
