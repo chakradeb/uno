@@ -28,7 +28,14 @@ let loadGame = function(){
     let lastPlayerCard = game.getLastPlayedCard();
     let card = player.throwMatchingCard(lastPlayerCard);
     if(card) console.log(`\n          ${player.getName()} Throwing ==>`,card);
-    if(card) game.addCardToTable(card);
+    if(card){
+      if(card.getColor()=='Wild'){
+        console.log('Choose Color:');
+        let color = readline.prompt();
+        card.changeColor(color); 
+      }
+      game.addCardToTable(card);
+    }
     console.log(`\n Player: ${player.getName()}==>`,player.showHand());
   }
   console.log('thrown cards ==>',game.getTable());

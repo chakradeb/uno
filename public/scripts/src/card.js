@@ -11,6 +11,10 @@ Card.prototype.getColor = function(){
 Card.prototype.getRank = function(){
   return this.rank;
 }
+
+Card.prototype.changeColor = function(choosenColor){
+  this.color = choosenColor;
+}
 // Card.prototype.isReverse = function(){
 //   return this.action == 'reverse';
 // }
