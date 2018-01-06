@@ -41,8 +41,15 @@ Player.prototype.getMatchingCards = function(tableCard){
   });
 }
 
+Player.prototype.getWildCards = function(){
+  return this.hand.filter(function(playerCard){
+    return playerCard.getColor()=='Wild';
+  });
+}
+
 Player.prototype.throwMatchingCard = function(tableCard) {
   let matchingCards = this.getMatchingCards(tableCard);
+  if(matchingCards.length == 0) matchingCards = this.getWildCards();
   removeCard(matchingCards[0],this.hand);
   return matchingCards[0];
 }

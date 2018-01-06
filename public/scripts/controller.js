@@ -22,14 +22,14 @@ let loadGame = function(){
   game.addTable();
   game.distributeCards(numberOfRounds);
   game.addOpeningCard();
-  console.log(game.getLastPlayedCard());
+  console.log('Opening Card==>',game.getLastPlayedCard());
   while(!game.isOver()){
     let player = game.determineTurn();
     let lastPlayerCard = game.getLastPlayedCard();
     let card = player.throwMatchingCard(lastPlayerCard);
-    if(card) console.log(`          ${player.getName()} Throwing ==>`,card);
+    if(card) console.log(`\n          ${player.getName()} Throwing ==>`,card);
     if(card) game.addCardToTable(card);
-    console.log(`Player: ${player.getName()}==>`,player.showHand());
+    console.log(`\n Player: ${player.getName()}==>`,player.showHand());
   }
   console.log('thrown cards ==>',game.getTable());
 }
