@@ -32,9 +32,13 @@ let loadGame = function(){
       if(card.getColor()=='Wild'){
         console.log('Choose Color:');
         let color = readline.prompt();
-        card.changeColor(color); 
+        card.changeColor(color);
       }
       game.addCardToTable(card);
+    }else{
+      let drawnCard = game.drawCardFromDeck();
+      player.addInHand(drawnCard);
+      console.log(`${player.getName()} drawn==>`,drawnCard);
     }
     console.log(`\n Player: ${player.getName()}==>`,player.showHand());
   }
